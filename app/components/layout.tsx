@@ -29,7 +29,7 @@ const PageHeader = () => {
   const { open } = useSidebar();
 
   return (
-    <div className="flex justify-between items-center px-4 space-x-2 h-14 border-b">
+    <div className="flex justify-between items-center pr-4 pl-2 space-x-2 h-14 border-b">
       <div className="flex space-x-2 items-center">
         {open !== false && <SidebarTrigger className="cursor-pointer size-10.5" />}
         <h1>Chat SBC</h1>
@@ -42,15 +42,23 @@ const PageHeader = () => {
               <AvatarImage src={profileImage} alt="profileImage" />
               <AvatarFallback>profile</AvatarFallback>
             </Avatar>
-            <p>ByeongChan</p>
           </PopoverTrigger>
-          <PopoverContent className="w-80">
-            <div className="grid gap-4">
-              <div className="space-y-2">
-                <h4 className="font-medium leading-none">Dimensions</h4>
-                <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
-              </div>
-            </div>
+          <PopoverContent className="mr-4 w-100 grid grid-cols-[80px_1fr] space-y-3">
+            <b>전화번호</b>
+            <p>010-8253-2613</p>
+
+            <b>이메일</b>
+            <p>byeongchan8433@gmail.com</p>
+
+            <b>GitHub</b>
+            <a href="https://github.com/spare8433" className="flex space-x-2 underline">
+              https://github.com/spare8433
+            </a>
+
+            <b>blog</b>
+            <a href="https://spare8433.tistory.com" className="flex space-x-2 underline">
+              https://spare8433.tistory.com
+            </a>
           </PopoverContent>
         </Popover>
       </div>

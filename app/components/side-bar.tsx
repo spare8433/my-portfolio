@@ -1,5 +1,5 @@
-import { FileUser, GraduationCap, Home, LibraryBig } from "lucide-react";
-import type { ReactNode } from "react";
+import { CodeXml, FileUser, GraduationCap, Home, LibraryBig } from "lucide-react";
+import { type ReactNode } from "react";
 
 import {
   Sidebar,
@@ -35,10 +35,10 @@ const Menu = ({ title, url, icon, variant = "basic" }: MenuProps) => {
 
   return (
     <ItemComponent>
-      <ButtonComponent asChild>
-        <a href={url}>
+      <ButtonComponent asChild className="[&>svg]:size-6 px-2 py-0">
+        <a href={url} className="h-10 mb-1">
           {icon}
-          <span>{title}</span>
+          <b>{title}</b>
         </a>
       </ButtonComponent>
     </ItemComponent>
@@ -52,7 +52,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <SidebarTrigger />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="px-2">
         <SidebarMenu>
           <Menu title="홈" url="/home" icon={<Home />} />
           <Menu title="자기소개" url="/introduce" icon={<FileUser />} />
@@ -62,7 +62,10 @@ export function AppSidebar() {
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton>프로젝트</SidebarMenuButton>
+                <SidebarMenuButton className="font-bold h-10 [&>svg]:size-6">
+                  <CodeXml />
+                  프로젝트
+                </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 {Projects.map((project) => (
