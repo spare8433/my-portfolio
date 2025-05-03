@@ -4,7 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
 }
 
@@ -128,7 +129,9 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
-  html, body, #root {
+  html,
+  body,
+  #root {
     @apply size-full;
   }
 
@@ -147,5 +150,38 @@ body {
   }
   h3 {
     @apply text-lg font-medium;
+  }
+
+  /* keyframes */
+  @keyframes collapsible-expand {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+
+  @keyframes collapsible-collapse {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer components {
+  .CollapsibleContent {
+    overflow: hidden;
+  }
+
+  .CollapsibleContent[data-state="open"] {
+    animation: collapsible-expand 200ms ease-out;
+  }
+
+  .CollapsibleContent[data-state="closed"] {
+    animation: collapsible-collapse 200ms ease-out;
   }
 }

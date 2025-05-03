@@ -12,7 +12,10 @@ export default function Layout() {
     <div className="flex size-full flex-col relative">
       <div className="absolute size-full overflow-hidden">
         <SidebarProvider>
-          <AppSidebar />
+          <nav>
+            <AppSidebar />
+          </nav>
+
           <div className="flex-1 flex-col overflow-hidden">
             <PageHeader />
             <main className="flex-1">
@@ -29,9 +32,9 @@ const PageHeader = () => {
   const { open } = useSidebar();
 
   return (
-    <div className="flex justify-between items-center pr-4 pl-2 space-x-2 h-14 border-b">
+    <div className="flex justify-between items-center pr-4 pl-3 space-x-2 h-14 border-b">
       <div className="flex space-x-2 items-center">
-        {open !== false && <SidebarTrigger className="cursor-pointer size-10.5" />}
+        {!open && <SidebarTrigger className="cursor-pointer size-10.5" />}
         <h1>Chat SBC</h1>
       </div>
 
