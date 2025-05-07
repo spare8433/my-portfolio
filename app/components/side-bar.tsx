@@ -62,8 +62,8 @@ export function AppSidebar() {
       <SidebarContent className="p-3">
         <SidebarMenu>
           <Menu title="홈" url="/" icon={<Home />} />
-          <Menu title="자기소개" url="/introduce" icon={<FileUser />} />
-          <Menu title="학력" url="/educational-background" icon={<GraduationCap />} />
+          <Menu title="자기소개" url="/about" icon={<FileUser />} />
+          <Menu title="학력" url="/education" icon={<GraduationCap />} />
           <Menu title="학습" url="/learning" icon={<LibraryBig />} />
 
           <Collapsible defaultOpen className="group/collapsible">

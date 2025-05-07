@@ -16,7 +16,7 @@ export default function Layout() {
             <AppSidebar />
           </nav>
 
-          <div className="flex-1 flex-col overflow-hidden">
+          <div className="flex flex-1 flex-col overflow-hidden">
             <PageHeader />
             <main className="flex-1">
               <Outlet />
@@ -38,33 +38,31 @@ const PageHeader = () => {
         <h1>Chat SBC</h1>
       </div>
 
-      <div>
-        <Popover>
-          <PopoverTrigger className="flex space-x-2 items-center cursor-pointer">
-            <Avatar>
-              <AvatarImage src={profileImage} alt="profileImage" />
-              <AvatarFallback>profile</AvatarFallback>
-            </Avatar>
-          </PopoverTrigger>
-          <PopoverContent className="mr-4 w-100 grid grid-cols-[80px_1fr] space-y-3">
-            <b>전화번호</b>
-            <p>010-8253-2613</p>
+      <Popover>
+        <PopoverTrigger className="flex space-x-2 items-center cursor-pointer drop-shadow-xl rounded-full">
+          <Avatar>
+            <AvatarImage src={profileImage} alt="profileImage" />
+            <AvatarFallback>profile</AvatarFallback>
+          </Avatar>
+        </PopoverTrigger>
+        <PopoverContent className="mr-4 w-100 grid grid-cols-[80px_1fr] space-y-3">
+          <b>전화번호</b>
+          <p>010-8253-2613</p>
 
-            <b>이메일</b>
-            <p>byeongchan8433@gmail.com</p>
+          <b>이메일</b>
+          <p>byeongchan8433@gmail.com</p>
 
-            <b>GitHub</b>
-            <a href="https://github.com/spare8433" className="flex space-x-2 underline">
-              https://github.com/spare8433
-            </a>
+          <b>GitHub</b>
+          <a href="https://github.com/spare8433" className="flex space-x-2 underline">
+            https://github.com/spare8433
+          </a>
 
-            <b>blog</b>
-            <a href="https://spare8433.tistory.com" className="flex space-x-2 underline">
-              https://spare8433.tistory.com
-            </a>
-          </PopoverContent>
-        </Popover>
-      </div>
+          <b>blog</b>
+          <a href="https://spare8433.tistory.com" className="flex space-x-2 underline">
+            https://spare8433.tistory.com
+          </a>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };
