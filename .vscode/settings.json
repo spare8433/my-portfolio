@@ -15,5 +15,5 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "css.lint.unknownAtRules": "ignore", // Tailwind CSS 사용시
-  "cSpell.words": ["byeongchan", "byeongchan's", "isbot", "mdast"]
+  "cSpell.words": ["byeongchan", "byeongchan's", "frontmatter", "isbot", "mdast"]
 }

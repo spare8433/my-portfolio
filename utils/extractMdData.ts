@@ -3,7 +3,7 @@ import type { Root, RootContent } from "mdast";
 function extractTextFromNode(node: RootContent): string {
   if (!node) return "";
 
-  if (node.type === "text") {
+  if ("value" in node) {
     return node.value;
   }
 
@@ -23,38 +23,29 @@ const updateHeadingHierarchy = (hierarchy: string[], depth: number, text: string
 
 // 출력 타입
 type SearchData = { type: string; headingHierarchy: string[]; text: string };
+type HeadingType = { depth: number; text: string };
 
 // 메인 검색 데이터 추출 함수
-function extractSearchData(ast: Root): SearchData[] {
-  const results: SearchData[] = [];
+function extractSearchData(ast: Root): { searchData: SearchData[]; headings: HeadingType[] } {
+  const searchData: SearchData[] = [];
   let headingHierarchy: string[] = [];
+  const headings: HeadingType[] = [];
 
   const walk = (node: RootContent) => {
     switch (node.type) {
       case "heading": {
         const text = extractTextFromNode(node);
         headingHierarchy = updateHeadingHierarchy(headingHierarchy, node.depth, text);
+        headings.push({ depth: node.depth, text: node.children.map((c) => "value" in c && c.value).join("") });
         break;
       }
 
+      case "tableCell":
       case "paragraph":
-      case "code":
-      case "blockquote": {
+      case "code": {
         const text = extractTextFromNode(node);
         if (text.trim()) {
-          results.push({ type: node.type, headingHierarchy: [...headingHierarchy], text });
-        }
-        break;
-      }
-
-      case "list": {
-        for (const item of node.children) {
-          if (item.type === "listItem") {
-            const text = extractTextFromNode(item);
-            if (text.trim()) {
-              results.push({ type: "listItem", headingHierarchy: [...headingHierarchy], text });
-            }
-          }
+          searchData.push({ type: node.type, headingHierarchy: [...headingHierarchy], text });
         }
         break;
       }
@@ -69,7 +60,8 @@ function extractSearchData(ast: Root): SearchData[] {
   };
 
   ast.children.forEach(walk);
-  return results;
+
+  return { headings, searchData };
 }
 
 export { extractSearchData, extractTextFromNode };

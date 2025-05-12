@@ -10,3 +10,15 @@ menu: 홈 > 자기소개
 - **주기적으로 개인 프로젝트를 개발**하며 **새로운 언어 및 기술들을 익히고 적용**하고 있습니다. 또한 관련한 이슈 및 **배운 내용을 블로그에 정리**해가며 지식을 쌓고 있습니다.
 - 실력 있는 개발자가 되기 위해 **기본적인 JS, 알고리즘, 관련 지식 등을 책과 강의 등을 통해 꾸준히 공부**하고 있습니다.
 - **프론트엔드 개발뿐 아니라 기획, 디자인, 백엔드 개발 등등 다양한 경험**을 하며 **부족함 없는 개발자가 되기 위해 노력**하고 있습니다.
+
+> test
+
+- `inline`
+
+```js
+  const text = extractTextFromNode(node);
+  if (text.trim()) {
+    results.push({ type: node.type, headingHierarchy: [...headingHierarchy], text });
+  }
+  break;
+```
