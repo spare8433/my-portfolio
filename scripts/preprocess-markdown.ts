@@ -1,38 +1,168 @@
 import fs from "fs";
 import matter from "gray-matter";
+import type { Root, RootContent } from "mdast";
 import path from "path";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeFormat from "rehype-format";
+import rehypeSlug from "rehype-slug";
+import rehypeStringify from "rehype-stringify";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
 
-import { extractSearchData } from "../utils/extractMdData";
+// 출력 타입
+type SearchData = { route: string; type: string; headingHierarchy: string[]; text: string };
+type HeadingType = { depth: number; text: string };
+type FrontmatterType = { title: string; slug: string };
 
-// 모든 마크다운 파일 전처리
-const preprocessMarkdown = async () => {
-  const contentDir = path.join(process.cwd(), "contents"); // md 파일 저장해둔 폴더 경로
-  const files = fs.readdirSync(contentDir);
+interface ParsedMarkdown {
+  route: string;
+  content: string;
+  frontmatter: FrontmatterType;
+  filePath: string;
+}
 
-  await Promise.all(
-    files.map(async (file) => {
-      const filePath = path.join(contentDir, file); // md 파일 경로
-      const fileContent = fs.readFileSync(filePath, "utf8"); // md 파일 내용 읽기
+// md 파일 경로
+const CONTENT_DIR = path.join(process.cwd(), "contents");
 
-      const { data: frontmatter, content } = matter(fileContent); // frontmatter와 content 분리
+generateStaticFilesFromMarkdown(); // 스크립트 실행
 
-      const ast = remark().use(remarkGfm).parse(content); // 마크다운 내용을 AST로 변환
+/**
+ * 검색 데이터: public/searchData.json
+ * HTML 파일: public/html/{slug}.html
+ * 목차 데이터: public/{slug}.json
+ */
+async function generateStaticFilesFromMarkdown() {
+  const parsedMarkdowns = getAllMarkdownFiles(CONTENT_DIR);
+  const searchDataList: SearchData[] = [];
 
-      const { searchData, headings } = extractSearchData(ast);
+  for (const parsedMarkdown of parsedMarkdowns) {
+    const { route, content, frontmatter } = parsedMarkdown;
+    const ast = remark().use(remarkGfm).parse(content);
 
-      const result = {
-        slug: file.replace(".md", ""),
-        frontmatter,
-        headings,
-        searchData,
-      };
+    const htmlResult = await remark()
+      .use(remarkRehype) // 마크다운을 HTML AST 로 변환
+      .use(rehypeSlug) // 헤딩에 id 생성
+      .use(rehypeAutolinkHeadings, { behavior: "wrap" }) // 헤딩을 <a>로 감싸 앵커 생성
+      .use(rehypeFormat) // HTML 포맷팅
+      .use(rehypeStringify) // HTML 문자열로 변환
+      .process(content); // 이건 HTML 문자열 포함
 
-      // JSON 파일로 저장
-      fs.writeFileSync(path.join(process.cwd(), `public/${file.replace(".md", "")}.json`), JSON.stringify(result));
-    }),
-  );
+    const { searchData, headings } = extractSearchData(ast, route); // 검색 데이터 및 목차 데이터 추출
+
+    // html 파일로 저장
+    ensureWriteFileSync(path.join(process.cwd(), `public/html/${frontmatter.slug}.html`), String(htmlResult));
+
+    // 목차 데이터 JSON 파일로 저장
+    ensureWriteFileSync(path.join(process.cwd(), `public/${frontmatter.slug}.json`), JSON.stringify(headings));
+
+    // 검색에 데이터 추가
+    for (const data of searchData) {
+      searchDataList.push(data);
+    }
+  }
+
+  // 검색 데이터 JSON 파일로 저장
+  ensureWriteFileSync(path.join(process.cwd(), "public/searchData.json"), JSON.stringify(searchDataList));
+}
+
+function getAllMarkdownFiles(dir: string, baseRoute = ""): ParsedMarkdown[] {
+  const entries = fs.readdirSync(dir, { withFileTypes: true }); // 디렉토리 내부 항목들 (파일/폴더 포함)
+  const results: ParsedMarkdown[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name); // 현재 항목의 전체 경로
+    const relativePath = path.relative(CONTENT_DIR, fullPath); // 루트 기준 상대 경로
+    const withoutExt = relativePath.replace(/\.md$/, ""); // 확장자 제거한 경로
+
+    if (entry.isDirectory()) {
+      // 하위 폴더일 경우 재귀적으로 탐색
+      const subRoute = path.join(baseRoute, entry.name); // ex: blog/
+      results.push(...getAllMarkdownFiles(fullPath, subRoute)); // 하위 경로에 대해 재귀 호출
+    } else if (entry.isFile() && entry.name.endsWith(".md")) {
+      // .md 파일인 경우만 처리
+      const raw = fs.readFileSync(fullPath, "utf-8"); // 파일 내용 읽기
+      const { content, data: frontmatter } = matter(raw); // frontmatter 및 본문 분리
+
+      const route = frontmatter.slug ? "/" + frontmatter.slug : "/" + withoutExt.replace(/\\/g, "/"); // OS에 따라 경로 구분자 일관되게 처리 → URL 경로화
+
+      results.push({
+        route, // 최종 URL 경로
+        content, // 마크다운 본문
+        frontmatter: frontmatter as FrontmatterType, // YAML frontmatter
+        filePath: fullPath, // 실제 파일 경로 (디버깅용)
+      });
+    }
+  }
+
+  return results; // 누적된 결과 반환
+}
+
+function extractSearchData(ast: Root, route: string): { searchData: SearchData[]; headings: HeadingType[] } {
+  const searchData: SearchData[] = [];
+  let headingHierarchy: string[] = [];
+  const headings: HeadingType[] = [];
+
+  const walk = (node: RootContent) => {
+    switch (node.type) {
+      case "heading": {
+        const text = extractTextFromNode(node);
+        headingHierarchy = updateHeadingHierarchy(headingHierarchy, node.depth, text);
+        headings.push({ depth: node.depth, text: node.children.map((c) => "value" in c && c.value).join("") });
+        break;
+      }
+
+      case "tableCell":
+      case "paragraph":
+      case "code": {
+        const text = extractTextFromNode(node);
+        if (text.trim()) {
+          searchData.push({ route, type: node.type, headingHierarchy: [...headingHierarchy], text });
+        }
+        break;
+      }
+      // 기타 블록 노드 추가 처리 가능
+    }
+
+    // 자식 노드가 있으면 순회
+    if ("children" in node && Array.isArray(node.children)) {
+      node.children.forEach(walk);
+    }
+  };
+
+  ast.children.forEach(walk);
+
+  return { headings, searchData };
+}
+
+const updateHeadingHierarchy = (hierarchy: string[], depth: number, text: string): string[] => {
+  const newHierarchy = [...hierarchy];
+  newHierarchy[depth - 1] = text;
+  return newHierarchy.slice(0, depth);
 };
 
-preprocessMarkdown();
+function extractTextFromNode(node: RootContent): string {
+  if (!node) return "";
+
+  if ("value" in node) {
+    return node.value;
+  }
+
+  if ("children" in node && Array.isArray(node.children)) {
+    return node.children.map(extractTextFromNode).join("");
+  }
+
+  return "";
+}
+
+function ensureWriteFileSync(filePath: string, content: string): void {
+  const dirPath = path.dirname(filePath); // 파일의 디렉토리 추출
+
+  // 디렉토리가 없으면 생성
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+
+  // 파일 저장
+  fs.writeFileSync(filePath, content, "utf-8");
+}

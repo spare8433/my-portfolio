@@ -186,3 +186,17 @@ body {
     animation: collapsible-collapse 200ms ease-out;
   }
 }
+
+@layer utilities {
+  .prose-sm :is(h1, h2, h3, h4, h5, h6) > a {
+    font: inherit;
+  }
+
+  .prose :is(h1, h2, h3, h4, h5, h6) > a {
+    font: inherit;
+  }
+
+  .prose-md :is(h1, h2, h3, h4, h5, h6) > a {
+    font: inherit;
+  }
+}

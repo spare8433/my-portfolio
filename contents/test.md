@@ -1,3 +1,8 @@
+---
+title: 테스트
+slug: test
+---
+
 # Markdown cheat sheet
 
 ## 목차
