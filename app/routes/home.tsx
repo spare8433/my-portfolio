@@ -1,3 +1,9 @@
+import Search from "@/components/search";
+
 export default function Home() {
-  return <>hi</>;
+  return (
+    <div className="p-3 items-center justify-center h-full">
+      <Search />
+    </div>
+  );
 }

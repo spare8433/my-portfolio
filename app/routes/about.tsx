@@ -1,3 +1,4 @@
+import Search from "@/components/search";
 import StaticHtmlViewer from "@/components/static-html-viewer";
 
 function About() {
@@ -12,7 +13,9 @@ function About() {
         </div>
       </div>
 
-      <div className="border-t h-24" />
+      <div className="border-t h-24">
+        <Search side="top" />
+      </div>
     </div>
   );
 }

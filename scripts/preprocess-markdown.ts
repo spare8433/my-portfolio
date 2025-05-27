@@ -11,8 +11,6 @@ import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 
 // 출력 타입
-type SearchData = { route: string; type: string; headingHierarchy: string[]; text: string };
-type HeadingType = { depth: number; text: string };
 type FrontmatterType = { title: string; slug: string };
 
 interface ParsedMarkdown {
@@ -63,7 +61,7 @@ async function generateStaticFilesFromMarkdown() {
   }
 
   // 검색 데이터 JSON 파일로 저장
-  ensureWriteFileSync(path.join(process.cwd(), "public/searchData.json"), JSON.stringify(searchDataList));
+  ensureWriteFileSync(path.join(process.cwd(), "public/site-search.json"), JSON.stringify(searchDataList));
 }
 
 function getAllMarkdownFiles(dir: string, baseRoute = ""): ParsedMarkdown[] {
@@ -107,8 +105,17 @@ function extractSearchData(ast: Root, route: string): { searchData: SearchData[]
     switch (node.type) {
       case "heading": {
         const text = extractTextFromNode(node);
-        headingHierarchy = updateHeadingHierarchy(headingHierarchy, node.depth, text);
-        headings.push({ depth: node.depth, text: node.children.map((c) => "value" in c && c.value).join("") });
+        if (text.trim()) {
+          // 공백이 아닌 경우에만 실행
+          headingHierarchy = updateHeadingHierarchy(headingHierarchy, node.depth, text);
+          headings.push({
+            path: `${route}#${text.toLowerCase().replace(/\s+/g, "-")}`,
+            depth: node.depth,
+            text,
+          });
+
+          searchData.push({ route, type: node.type, headingHierarchy, text });
+        }
         break;
       }
 
@@ -117,7 +124,8 @@ function extractSearchData(ast: Root, route: string): { searchData: SearchData[]
       case "code": {
         const text = extractTextFromNode(node);
         if (text.trim()) {
-          searchData.push({ route, type: node.type, headingHierarchy: [...headingHierarchy], text });
+          // 공백이 아닌 경우에만 추가
+          searchData.push({ route, type: node.type, headingHierarchy, text });
         }
         break;
       }
