@@ -9,21 +9,19 @@ import { AppSidebar } from "./side-bar";
 
 export default function Layout() {
   return (
-    <div className="flex size-full flex-col relative">
-      <div className="absolute size-full overflow-hidden">
-        <SidebarProvider>
-          <nav>
-            <AppSidebar />
-          </nav>
+    <div className="size-full">
+      <SidebarProvider className="size-full">
+        <nav>
+          <AppSidebar />
+        </nav>
 
-          <div className="flex flex-1 flex-col overflow-hidden">
-            <PageHeader />
-            <main className="flex-1">
-              <Outlet />
-            </main>
-          </div>
-        </SidebarProvider>
-      </div>
+        <div className="flex flex-1 flex-col">
+          <PageHeader />
+          <main className="flex-1 overflow-hidden">
+            <Outlet />
+          </main>
+        </div>
+      </SidebarProvider>
     </div>
   );
 }

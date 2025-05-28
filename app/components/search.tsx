@@ -47,8 +47,8 @@ function Search({ side = "bottom" }: { side?: "top" | "bottom" }) {
   };
 
   return (
-    <div className="size-full flex space-x-4 justify-center items-center">
-      <div className="w-full max-w-4/5 h-14 rounded-full flex justify-center items-center shadow-input border-input shadow border relative">
+    <div className="size-full flex justify-center items-center px-6">
+      <div className="w-full h-14 rounded-full flex justify-center items-center shadow-input border-input shadow border relative">
         <div className="flex-1 h-full overflow-y-auto font-semibold">
           <Input
             type="text"
