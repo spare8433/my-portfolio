@@ -1,6 +1,6 @@
 [
   { "path": "/test#markdown-cheat-sheet", "depth": 1, "text": "Markdown cheat sheet" },
-  { "path": "/test#목차", "depth": 2, "text": "목차" },
+  { "path": "/test#목차", "depth": 2, "text": "목차" },
   { "path": "/test#headers", "depth": 2, "text": "Headers" },
   { "path": "/test#header-1", "depth": 1, "text": "Header 1" },
   { "path": "/test#header-2", "depth": 2, "text": "Header 2" },

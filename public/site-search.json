@@ -24,13 +24,482 @@
     "headingHierarchy": ["자기소개"],
     "text": "프론트엔드 개발뿐 아니라 기획, 디자인, 백엔드 개발 등등 다양한 경험을 하며 부족함 없는 개발자가 되기 위해 노력하고 있습니다."
   },
-  { "route": "/about", "type": "paragraph", "headingHierarchy": ["자기소개"], "text": "test" },
-  { "route": "/about", "type": "paragraph", "headingHierarchy": ["자기소개"], "text": "inline" },
+  { "route": "/about", "type": "heading", "headingHierarchy": ["자기소개", "기술  스택"], "text": "기술  스택" },
+  { "route": "/about", "type": "tableCell", "headingHierarchy": ["자기소개", "기술  스택"], "text": "구분" },
+  { "route": "/about", "type": "tableCell", "headingHierarchy": ["자기소개", "기술  스택"], "text": "Front-End" },
   {
     "route": "/about",
-    "type": "code",
-    "headingHierarchy": ["자기소개"],
-    "text": "  const text = extractTextFromNode(node);\r\n  if (text.trim()) {\r\n    results.push({ type: node.type, headingHierarchy: [...headingHierarchy], text });\r\n  }\r\n  break;"
+    "type": "tableCell",
+    "headingHierarchy": ["자기소개", "기술  스택"],
+    "text": "React.js, Next.js, TypeScript, JS(ES6), HTML/CSS, styled-component,Tailwind CSS, Redux, Redux-Saga, React Query"
+  },
+  { "route": "/about", "type": "tableCell", "headingHierarchy": ["자기소개", "기술  스택"], "text": "Back-End" },
+  {
+    "route": "/about",
+    "type": "tableCell",
+    "headingHierarchy": ["자기소개", "기술  스택"],
+    "text": "Node.js, Express, Prisma, Sequelize"
+  },
+  { "route": "/about", "type": "tableCell", "headingHierarchy": ["자기소개", "기술  스택"], "text": "Server" },
+  { "route": "/about", "type": "tableCell", "headingHierarchy": ["자기소개", "기술  스택"], "text": "MySQL, MongoDB" },
+  { "route": "/about", "type": "tableCell", "headingHierarchy": ["자기소개", "기술  스택"], "text": "Tool" },
+  {
+    "route": "/about",
+    "type": "tableCell",
+    "headingHierarchy": ["자기소개", "기술  스택"],
+    "text": "GitHub, AWS, Vercel"
+  },
+  { "route": "/about", "type": "heading", "headingHierarchy": ["자기소개", "학력"], "text": "학력" },
+  {
+    "route": "/about",
+    "type": "heading",
+    "headingHierarchy": ["자기소개", "학력", "2022.03 ~ 2023.02  신구대학교 졸업  [전공심화  IT미디어학과]"],
+    "text": "2022.03 ~ 2023.02  신구대학교 졸업  [전공심화  IT미디어학과]"
+  },
+  {
+    "route": "/about",
+    "type": "paragraph",
+    "headingHierarchy": ["자기소개", "학력", "2022.03 ~ 2023.02  신구대학교 졸업  [전공심화  IT미디어학과]"],
+    "text": "학점 3.75/4.5"
+  },
+  {
+    "route": "/about",
+    "type": "heading",
+    "headingHierarchy": ["자기소개", "학력", "2017.03 ~ 2022.02  신구대학교 졸업  [3년제  IT소프트웨어전공]"],
+    "text": "2017.03 ~ 2022.02  신구대학교 졸업  [3년제  IT소프트웨어전공]"
+  },
+  {
+    "route": "/about",
+    "type": "paragraph",
+    "headingHierarchy": ["자기소개", "학력", "2017.03 ~ 2022.02  신구대학교 졸업  [3년제  IT소프트웨어전공]"],
+    "text": "학점 4.187/4.5"
+  },
+  { "route": "/learning", "type": "heading", "headingHierarchy": ["학습"], "text": "학습" },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "websocket & webRTC 학습 [GitHub, Blog]"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "기간"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "2025.3 ~ 2025.4"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "websocket & webRTC 등 실시간 통신 관련 공부 목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "내용"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "“nomad zoom 클론코딩 강의”와 공식 문서를 참고하여 주요 개념을 블로그에 업로드 및 로컬환경에서 실시간 통신 과정을 테스트 할 수 있는 코드를 github 에 업로드"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "관련 링크"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "websocket & webRTC 학습 [GitHub, Blog]"],
+    "text": "Blog 링크 : https://spare8433.tistory.com/category/websocket%20%26%20webRTC<br>GitHub 링크 : https://github.com/spare8433/practice-socket.io"
+  },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "Prisma 라이브러리 학습 [Blog]"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "기간"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "2025.1 ~ 2025.2"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "Rich calendar 프로젝트 백엔드 개발에 사용할 ORM형식의 Prisma 라이브러리 관련 공부 목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "내용"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "Prisma 공식 문서를 참고하여 중요 개념 및 사용법을 블로그에 업로드"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "관련 링크"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Prisma 라이브러리 학습 [Blog]"],
+    "text": "Blog 링크 : https://spare8433.tistory.com/category/Prisma"
+  },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "Next.js 14 버전 학습 [Blog]"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "기간"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "2024.1 ~ 2024.2"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "새롭게 출시된 Next.js 14 버전 공부 목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "내용"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "Next.js 14 공식 문서를 참고하여 중요 개념 및 사용법을 블로그에 업로드"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "관련 링크"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Next.js 14 버전 학습 [Blog]"],
+    "text": "Blog 링크 : https://spare8433.tistory.com/category/nextjs/next 14 공식 문서 부시기"
+  },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "JS 알고리즘 학습 [GitHub, Blog]"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "기간"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "2023.10 ~ 진행중"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "알고리즘 공부 목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "내용"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "\"인프런 JS 알고리즘 강의\"를 참고해 문제 풀이를 GitHub 및 블로그에 업로드"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "관련 링크"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 알고리즘 학습 [GitHub, Blog]"],
+    "text": "GitHub 링크 : https://github.com/spare8433/study-js-algorithm<br>Blog 링크 : https://spare8433.tistory.com/category/코딩 테스트 문제 및 풀이"
+  },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "JS 개념  [Blog]"],
+    "text": "JS 개념  [Blog]"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념  [Blog]"], "text": "기간" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념  [Blog]"],
+    "text": "2023.9 ~ 2023.10 (1개월)"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념  [Blog]"], "text": "목적" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념  [Blog]"],
+    "text": "JS 개념 공부 목적"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념  [Blog]"], "text": "내용" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념  [Blog]"],
+    "text": "“모던 자바스크립트 deep dive” 책 내용을 참고해 부족한 JS 개념을 정리하여 블로그에 관련 내용을 정리하여 업로드"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념  [Blog]"], "text": "관련 링크" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념  [Blog]"],
+    "text": "Blog 링크 : https://spare8433.tistory.com/category/JS/JS 공부는 다다익선 [모던자바스크립트]"
+  },
+  { "route": "/learning", "type": "heading", "headingHierarchy": ["학습", "JS 개념 [Blog]"], "text": "JS 개념 [Blog]" },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념 [Blog]"], "text": "기간" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념 [Blog]"],
+    "text": "2023.3 (1개월)"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념 [Blog]"], "text": "목적" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념 [Blog]"],
+    "text": "JS 개념 공부 목적"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념 [Blog]"], "text": "내용" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념 [Blog]"],
+    "text": "인프런 \"코딩인터뷰를 저격하는 JS 스나이퍼 양성학교 강의\"를 참고해 핵심 JS 개념을 정리하여 블로그에 관련 내용을 정리하여 업로드"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "JS 개념 [Blog]"], "text": "관련 링크" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "JS 개념 [Blog]"],
+    "text": "Blog 링크 : https://spare8433.tistory.com/category/JS/JS 핵심 개념"
+  },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "기간"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "2023.3 (1개월)"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "HTTP 관련 네트워크 및 웹 지식 공부 목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "내용"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "인프런 \"모든 개발자를 위한 HTTP 웹 기본 지식 강의\"를 참고해 블로그에 관련 내용을 정리하여 업로드"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "관련 링크"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"],
+    "text": "Blog 링크 : https://spare8433.tistory.com/category/HTTP 관련 네트워크 및 웹 지식"
+  },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "twitter 클론 코딩 [GitHub]"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "기간"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "2022.7 ~ 2022.9 (2개월)"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "React, Next.js 숙련도 향상과 개발 경험 목적"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "내용"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "인프런 \"React로 NodeBird SNS 만들기 강의\"를 참고해 제작한 SNS 형식의 웹 애플리케이션으로 React 로 제작되는 강의지만 next.js 로 적용하여 제작"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "관련 링크"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "twitter 클론 코딩 [GitHub]"],
+    "text": "GitHub 링크 Back : https://github.com/spare8433/study-nodebird-back_Node.js<br>GitHub 링크 Front : https://github.com/spare8433/study-nodebird-front_Next.js"
+  },
+  {
+    "route": "/learning",
+    "type": "heading",
+    "headingHierarchy": ["학습", "Git Github 학습 [Blog]"],
+    "text": "Git Github 학습 [Blog]"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "Git Github 학습 [Blog]"], "text": "기간" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Git Github 학습 [Blog]"],
+    "text": "2022.2 (1개월)"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "Git Github 학습 [Blog]"], "text": "목적" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Git Github 학습 [Blog]"],
+    "text": "Git, GitHub 숙련도 향상 및 주요 개념 공부 목적"
+  },
+  { "route": "/learning", "type": "tableCell", "headingHierarchy": ["학습", "Git Github 학습 [Blog]"], "text": "내용" },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Git Github 학습 [Blog]"],
+    "text": "인프런 \"제대로 파는 Git & GitHub - by 얄코 강의\"를 참고해 블로그에 관련 내용을 정리하여 업로드"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Git Github 학습 [Blog]"],
+    "text": "관련 링크"
+  },
+  {
+    "route": "/learning",
+    "type": "tableCell",
+    "headingHierarchy": ["학습", "Git Github 학습 [Blog]"],
+    "text": "Blog 링크 : https://spare8433.tistory.com/category/git %26 github"
   },
   { "route": "/test", "type": "heading", "headingHierarchy": ["Markdown cheat sheet"], "text": "Markdown cheat sheet" },
   { "route": "/test", "type": "heading", "headingHierarchy": ["Markdown cheat sheet", "목차"], "text": "목차" },

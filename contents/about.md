@@ -10,14 +10,25 @@ slug: about
 - 실력 있는 개발자가 되기 위해 **기본적인 JS, 알고리즘, 관련 지식 등을 책과 강의 등을 통해 꾸준히 공부**하고 있습니다.
 - **프론트엔드 개발뿐 아니라 기획, 디자인, 백엔드 개발 등등 다양한 경험**을 하며 **부족함 없는 개발자가 되기 위해 노력**하고 있습니다.
 
-> test
+<br>
 
-- `inline`
+## 기술  스택
 
-```js
-  const text = extractTextFromNode(node);
-  if (text.trim()) {
-    results.push({ type: node.type, headingHierarchy: [...headingHierarchy], text });
-  }
-  break;
-```
+| **구분** |  |
+| --- | --- |
+| **Front-End** | **React.js**, **Next.js**, **TypeScript**, **JS(ES6)**, **HTML/CSS**, **styled-component**,**Tailwind CSS**, **Redux, Redux-Saga, React Query** |
+| **Back-End** | **Node.js**, **Express**, Prisma, Sequelize |
+| **Server** | **MySQL**, MongoDB |
+| **Tool** | GitHub, AWS, Vercel |
+
+<br>
+
+## **학력**
+
+### **2022.03 ~ 2023.02  신구대학교 졸업  [전공심화  IT미디어학과]**
+
+학점 3.75/4.5
+
+### **2017.03 ~ 2022.02  신구대학교 졸업  [3년제  IT소프트웨어전공]**
+
+학점 4.187/4.5

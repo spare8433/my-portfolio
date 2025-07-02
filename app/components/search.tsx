@@ -2,13 +2,19 @@ import type { FuseResult } from "fuse.js";
 import { SendHorizontal } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
-import { ROUTE_LABEL_MAP } from "@/constants";
 import { useInput } from "@/hooks/use-input";
 import { searchSite } from "@/lib/site-search";
 import { cn } from "@/lib/utils";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+
+export const routeLabelMap = new Map<string, string>([
+  ["about", "자기소개"],
+  ["education", "학력"],
+  ["learning", "학습"],
+  ["projects", "프로젝트"],
+]);
 
 function Search({ side = "bottom" }: { side?: "top" | "bottom" }) {
   const { value, onChange } = useInput("");
@@ -81,7 +87,7 @@ function Search({ side = "bottom" }: { side?: "top" | "bottom" }) {
               const routeHierarchy = item.route
                 .split("/")
                 .filter(Boolean)
-                .map((seg) => ROUTE_LABEL_MAP.get(seg) ?? seg);
+                .map((seg) => routeLabelMap.get(seg) ?? seg);
               const hierarchy = [...routeHierarchy, ...item.headingHierarchy.slice(1)].join(" / ");
 
               return (

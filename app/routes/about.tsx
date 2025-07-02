@@ -1,5 +1,5 @@
 import TocPage from "@/components/toc-page";
-import { tocPages } from "@/constants";
+import { tocPages } from "@/config/routes";
 
 function About() {
   const { introText, tocPath, htmlPath } = tocPages.about;

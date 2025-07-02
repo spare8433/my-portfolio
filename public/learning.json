@@ -1,0 +1,20 @@
+[
+  { "path": "/learning#학습", "depth": 1, "text": "학습" },
+  {
+    "path": "/learning#websocket-webrtc-학습-github-blog",
+    "depth": 2,
+    "text": "websocket & webRTC 학습 [GitHub, Blog]"
+  },
+  { "path": "/learning#prisma-라이브러리-학습-blog", "depth": 2, "text": "Prisma 라이브러리 학습 [Blog]" },
+  { "path": "/learning#nextjs-14-버전-학습-blog", "depth": 2, "text": "Next.js 14 버전 학습 [Blog]" },
+  { "path": "/learning#js-알고리즘-학습-github-blog", "depth": 2, "text": "JS 알고리즘 학습 [GitHub, Blog]" },
+  { "path": "/learning#js-개념-blog", "depth": 2, "text": "JS 개념  [Blog]" },
+  { "path": "/learning#js-개념-blog", "depth": 2, "text": "JS 개념 [Blog]" },
+  {
+    "path": "/learning#http-관련-네트워크-및-웹-지식-학습-blog",
+    "depth": 2,
+    "text": "HTTP 관련 네트워크 및 웹 지식 학습 [Blog]"
+  },
+  { "path": "/learning#twitter-클론-코딩-github", "depth": 2, "text": "twitter 클론 코딩 [GitHub]" },
+  { "path": "/learning#git-github-학습-blog", "depth": 2, "text": "Git Github 학습 [Blog]" }
+]
