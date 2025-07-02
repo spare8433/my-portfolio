@@ -7,7 +7,7 @@ export default function ContentLayout() {
   return (
     <div className="flex flex-col h-full">
       {/* 콘텐츠 컨터이너 영역 */}
-      <div className="h-full overflow-y-auto flex-1 relative flex py-4 px-6 gap-x-4">
+      <div className="h-full overflow-y-auto flex-1 relative flex">
         <Outlet />
       </div>
 

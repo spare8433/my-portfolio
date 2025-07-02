@@ -10,7 +10,7 @@ function Toc({ path }: { path: string }) {
   }, [path]);
 
   return (
-    <nav className="max-w-xs p-4 rounded-md overflow-auto max-h-full">
+    <nav className="max-w-xs p-4 rounded-md overflow-auto h-full">
       <ul className="space-y-1 border-l">
         {TOCContent.map(({ path, depth, text }) => {
           return (

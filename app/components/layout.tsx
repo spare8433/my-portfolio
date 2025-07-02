@@ -4,6 +4,7 @@ import profileImage from "@/assets/profile.png";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 
 import { AppSidebar } from "./side-bar";
 
@@ -32,7 +33,7 @@ const PageHeader = () => {
   return (
     <div className="flex justify-between items-center pr-4 pl-3 space-x-2 h-14 border-b">
       <div className="flex space-x-2 items-center">
-        {!open && <SidebarTrigger className="cursor-pointer size-10.5" />}
+        <SidebarTrigger className={cn("block md:hidden cursor-pointer size-10.5", !open && "md:block")} />
         <h1>Chat SBC</h1>
       </div>
 
