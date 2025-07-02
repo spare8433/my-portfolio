@@ -1,10 +1,11 @@
 import fs from "fs";
 import matter from "gray-matter";
+import type { Element, RootContent as HastRootContent } from "hast";
 import type { Root, RootContent } from "mdast";
 import path from "path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeFormat from "rehype-format";
-import rehypeSlug from "rehype-slug";
+import rehypeRaw from "rehype-raw";
 import rehypeStringify from "rehype-stringify";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
@@ -25,6 +26,29 @@ const CONTENT_DIR = path.join(process.cwd(), "contents");
 
 generateStaticFilesFromMarkdown(); // 스크립트 실행
 
+// 헤딩에 URI fragment 를 위한 id 속성 추가 함수(예: <h1 id="제목-예시">제목 예시</h1>)
+function rehypeCustomSlug() {
+  return (tree: Element) => {
+    const visit = (node: HastRootContent) => {
+      if (node.type === "element" && /^h[1-6]$/.test(node.tagName)) {
+        const text = extractTextFromHtmlNode(node);
+        const slug = generateSlug(text);
+
+        node.properties = { ...node.properties, id: slug };
+        console.log(node.properties);
+      }
+
+      if ("children" in node && Array.isArray(node.children)) {
+        for (const child of node.children) {
+          visit(child);
+        }
+      }
+    };
+
+    visit(tree);
+  };
+}
+
 /**
  * 검색 데이터: public/searchData.json
  * HTML 파일: public/html/{slug}.html
@@ -39,8 +63,10 @@ async function generateStaticFilesFromMarkdown() {
     const ast = remark().use(remarkGfm).parse(content);
 
     const htmlResult = await remark()
-      .use(remarkRehype) // 마크다운을 HTML AST 로 변환
-      .use(rehypeSlug) // 헤딩에 id 생성
+      .use(remarkGfm) // GFM (GitHub Flavored Markdown) 지원
+      .use(remarkRehype, { allowDangerousHtml: true }) // 마크다운을 HTML AST 로 변환
+      .use(rehypeRaw) // HTML 태그를 포함한 마크다운 지원
+      .use(rehypeCustomSlug) // 헤딩에 id 생성
       .use(rehypeAutolinkHeadings, { behavior: "wrap" }) // 헤딩을 <a>로 감싸 앵커 생성
       .use(rehypeFormat) // HTML 포맷팅
       .use(rehypeStringify) // HTML 문자열로 변환
@@ -64,7 +90,7 @@ async function generateStaticFilesFromMarkdown() {
   ensureWriteFileSync(path.join(process.cwd(), "public/site-search.json"), JSON.stringify(searchDataList));
 }
 
-function getAllMarkdownFiles(dir: string, baseRoute = ""): ParsedMarkdown[] {
+function getAllMarkdownFiles(dir: string): ParsedMarkdown[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true }); // 디렉토리 내부 항목들 (파일/폴더 포함)
   const results: ParsedMarkdown[] = [];
 
@@ -75,8 +101,7 @@ function getAllMarkdownFiles(dir: string, baseRoute = ""): ParsedMarkdown[] {
 
     if (entry.isDirectory()) {
       // 하위 폴더일 경우 재귀적으로 탐색
-      const subRoute = path.join(baseRoute, entry.name); // ex: blog/
-      results.push(...getAllMarkdownFiles(fullPath, subRoute)); // 하위 경로에 대해 재귀 호출
+      results.push(...getAllMarkdownFiles(fullPath)); // 하위 경로에 대해 재귀 호출
     } else if (entry.isFile() && entry.name.endsWith(".md")) {
       // .md 파일인 경우만 처리
       const raw = fs.readFileSync(fullPath, "utf-8"); // 파일 내용 읽기
@@ -109,7 +134,7 @@ function extractSearchData(ast: Root, route: string): { searchData: SearchData[]
           // 공백이 아닌 경우에만 실행
           headingHierarchy = updateHeadingHierarchy(headingHierarchy, node.depth, text);
           headings.push({
-            path: `${route}#${text.toLowerCase().replace(/\s+/g, "-")}`,
+            path: `${route}#${generateSlug(text)}`,
             depth: node.depth,
             text,
           });
@@ -163,6 +188,18 @@ function extractTextFromNode(node: RootContent): string {
   return "";
 }
 
+function extractTextFromHtmlNode(node: Element): string {
+  let result = "";
+  for (const child of node.children || []) {
+    if (child.type === "text") {
+      result += child.value;
+    } else if (child.type === "element") {
+      result += extractTextFromHtmlNode(child);
+    }
+  }
+  return result;
+}
+
 function ensureWriteFileSync(filePath: string, content: string): void {
   const dirPath = path.dirname(filePath); // 파일의 디렉토리 추출
 
@@ -173,4 +210,14 @@ function ensureWriteFileSync(filePath: string, content: string): void {
 
   // 파일 저장
   fs.writeFileSync(filePath, content, "utf-8");
+}
+
+// slug 변환 함수("1. 제목 예시" > "1-제목-예시")
+function generateSlug(text: string): string {
+  return text
+    .normalize("NFKD") // 유니코드 정규화
+    .replace(/[^\p{L}\p{N}\s-]/gu, "") // 특수문자 제거, 한글 허용
+    .trim()
+    .replace(/\s+/g, "-") // 공백 → 하이픈
+    .toLowerCase();
 }
